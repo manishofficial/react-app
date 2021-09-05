@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{ useState } from 'react';
+import EntryForm from "./components/Form";
+import SearchForm from "./components/SearchForm";
+import {Tabs, Tab} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
+  const [key, setKey] = useState('home');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <React.StrictMode>
+        <Tabs
+          id="controlled-tab-example"
+          activeKey={key}
+          onSelect={(k) => setKey(k)}
+          className="mb-3"
         >
-          Learn React
-        </a>
-      </header>
+          <Tab eventKey="home" title="Home">
+            <EntryForm/>
+          </Tab>
+          <Tab eventKey="search" title="Search">
+            <SearchForm/>
+          </Tab>
+        </Tabs>
+      </React.StrictMode>
     </div>
   );
 }
